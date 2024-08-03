@@ -1,5 +1,5 @@
 # Usa una imagen base de Node.js para construir la app
-FROM node:18 AS build
+FROM node:14 AS build
 
 # Establece el directorio de trabajo
 WORKDIR /app
@@ -22,8 +22,12 @@ FROM nginx:alpine
 # Copia los archivos compilados de Angular a Nginx
 COPY --from=build /app/dist/cloudrun /usr/share/nginx/html
 
-# Expone el puerto 80
-EXPOSE 80
+# Configura Nginx para escuchar en el puerto 8080
+RUN rm /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/conf.d
+
+# Expone el puerto 8080
+EXPOSE 8080
 
 # Comando para correr Nginx
 CMD ["nginx", "-g", "daemon off;"]
