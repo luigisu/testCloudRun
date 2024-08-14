@@ -1,14 +1,16 @@
 import express from "express";
 import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 
-// Servir los archivos estáticos de Angular
-app.use(express.static("testCloudRun/dist/cloudrun"));
+app.use(express.static(path.join(__dirname, "dist/cloudrun")));
 
-// Ruta por defecto
 app.get("*", (req, res) => {
-  res.sendFile("testCloudRun/dist/cloudrun/index.html");
+  res.sendFile(path.join(__dirname, "dist/cloudrun", "index.html"));
 });
 
 const port = process.env.PORT || 8080;
