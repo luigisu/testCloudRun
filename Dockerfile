@@ -8,7 +8,7 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 RUN npm install
 
-# Copia el resto de los archivos de la aplicación
+# Copia el resto de los archivos de la aplicación.
 COPY . .
 
 # Exponer el puerto donde se ejecutará la aplicación
