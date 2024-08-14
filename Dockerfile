@@ -12,7 +12,10 @@ RUN npm install
 COPY . .
 
 # Exponer el puerto donde se ejecutará la aplicación
-EXPOSE 80
+
+RUN ng build
+
+EXPOSE 8080
 
 # Comando para iniciar la aplicación (ajusta según tu configuración)
-CMD ["node", "dist/index.js"]
+CMD ["node", "server.js"]
