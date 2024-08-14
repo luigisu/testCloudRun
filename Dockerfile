@@ -13,7 +13,7 @@ COPY . .
 
 # Exponer el puerto donde se ejecutará la aplicación
 
-RUN ng build
+RUN npm run build
 
 EXPOSE 8080
 
